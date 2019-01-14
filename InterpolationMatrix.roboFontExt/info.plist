@@ -33,9 +33,5 @@
 	<real>1547483378.40699</real>
 	<key>version</key>
 	<string>0.7.1</string>
-    <key>repository</key>
-    <string>https://github.com/roboDocs/interpolationMatrix</string>
-    <key>extensionPath</key>
-    <string>InterpolationMatrix.roboFontExt</string>
 </dict>
 </plist>
