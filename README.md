@@ -1,6 +1,8 @@
 ## Interpolation Matrix (MutatorMath)
 ================
 
+_This version of Interpolation Matrix is based on a fork of the original version by Loic Sander._
+
 The interpolation matrix is a tool requiring at least two master fonts open in Robofont and interpolable glyphs, if the glyphs are incompatible, no instance will show. It allows you to preview interpolation and extrapolation based on master position in an grid.
 
 This version of the script (suffix -mutatormath) & the extension are a rewriting of the previous Interpolation Preview Matrix (see below) now using ![Letteror’s MutatorMath](https://github.com/LettError/MutatorMath) <3, whereas previous inter/extrapolations where written by my simple self.
@@ -18,13 +20,3 @@ Last but not least, you can save matrices: grid size, window size and master fon
 
 Demo on Vimeo:
 http://vimeo.com/109734720
-
-
-## Interpolation preview matrix
-================
-
-Script requiring at least two master fonts open in Robofont and interpolable glyphs which allows you to preview interpolation and extrapolation based on master position in a 3x3 matrix.
-
-![alt tag](images/example.png)
-
-The glyphs are updated at draw time, so you can modify glyphs and see changes happen live in the matrix (blue pill!). 
