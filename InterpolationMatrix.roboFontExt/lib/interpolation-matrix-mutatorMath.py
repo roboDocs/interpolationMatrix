@@ -301,6 +301,8 @@ class InterpolationMatrixController:
                     # components are not compatible
                     mutator = None
             except:
+                # import traceback
+                # traceback.print_exc()
                 mutator = None
 
             for i in range(nCellsOnHorizontalAxis):
