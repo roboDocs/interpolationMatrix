@@ -55,8 +55,8 @@ def makePreviewGlyph(glyph, fixedWidth=True):
                     base = makePreviewGlyph(base, False)
                 decomponent = RGlyph()
                 decomponent.appendGlyph(base)
-                decomponent.scale((component.scale[0], component.scale[1]))
-                decomponent.move((component.offset[0], component.offset[1]))
+                decomponent.scaleBy((component.scale[0], component.scale[1]))
+                decomponent.moveBy((component.offset[0], component.offset[1]))
                 previewGlyph.appendGlyph(decomponent)
             for contour in glyph.contours:
                 previewGlyph.appendContour(contour)
@@ -64,11 +64,11 @@ def makePreviewGlyph(glyph, fixedWidth=True):
             if fixedWidth:
                 previewGlyph.width = 1000
                 previewGlyph.leftMargin = previewGlyph.rightMargin = (previewGlyph.leftMargin + previewGlyph.rightMargin)/2
-                previewGlyph.scale((.75, .75), (previewGlyph.width/2, 0))
-                previewGlyph.move((0, -50))
+                previewGlyph.scaleBy((.75, .75), (previewGlyph.width/2, 0))
+                previewGlyph.moveBy((0, -50))
 
             scaleFactor = 1000.0 / font.info.unitsPerEm
-            previewGlyph.scale((scaleFactor, scaleFactor), (previewGlyph.width/2, 0))
+            previewGlyph.scaleBy((scaleFactor, scaleFactor), (previewGlyph.width/2, 0))
 
             previewGlyph.name = glyph.name
 
@@ -766,7 +766,7 @@ class InterpolationMatrixController:
             masterGlyphs = [(masterLocation, masterFont[glyphName].toMathGlyph()) for masterLocation, masterFont in masters]
             masterUnicodes = set(masterFont[glyphName].unicode for masterLocation, masterFont in masters)
             masterRawGlyphs = [masterFont[glyphName] for masterLocation, masterFont in masters]
-            
+
             if len(masterUnicodes) == 1:
                 masterUnicode = masterUnicodes.pop()
             else:
@@ -1152,8 +1152,8 @@ class InterpolationMatrixController:
             posSize = self.w.getPosSize()
             matrixTextValues = ['Matrix Interpolation File\n','%s,%s\n'%(axesGrid['horizontal'], axesGrid['vertical']), ','.join([str(value) for value in posSize]),'\n', str(self.currentGlyph),'\n',','.join(matrixTextValues)]
             matrixTextForm = ''.join(matrixTextValues)
-            f = open(pathToSave, 'w')
-            f.write(matrixTextForm)
+            with open(pathToSave, 'w') as f:
+                f.write(matrixTextForm)
 
     def loadMatrixFile(self, sender):
         pathToLoad = getFile(fileTypes=['txt'], allowsMultipleSelection=False, resultCallback=self.loadMatrix, parentWindow=self.w)
@@ -1162,8 +1162,8 @@ class InterpolationMatrixController:
         if pathToLoad is not None:
             self.matrixSpots = {}
             self.reallocateWeights()
-            f = open(pathToLoad[0], 'r')
-            matrixTextForm = f.read()
+            with open(pathToLoad[0], 'r') as f:
+                matrixTextForm = f.read()
             matrixValues = matrixTextForm.split('\n')
             if matrixValues and matrixValues[0] == 'Matrix Interpolation File':
                 limits = tuple(matrixValues[1].split(','))
