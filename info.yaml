@@ -1,0 +1,13 @@
+name: Interpolation Matrix
+developer: Loic Sander
+developerURL: https://github.com/loicsander
+launchAtStartUp: false
+mainScript: ''
+version: 0.7.2
+addToMenu:
+- path: interpolation-matrix-mutatorMath.py
+  preferredName: Interpolation Matrix
+  shortKey: ''
+html: true
+requiresVersionMajor: '3'
+requiresVersionMinor: '0'
